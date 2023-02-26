@@ -1,32 +1,24 @@
 import heapq
 
 n, m = map(int, input().split())
-
 houses = []
 for i in range(m):
     start, end = map(int, input().split())
-    houses.append((start, end, i+1))
+    houses.append((start, end, i+1))  # add index to tuple for later sorting
 
-houses.sort()
+houses.sort()  # sort by start day and then end day
 
-painted = []
-currentDay = 1
-pq = []
+painted = []  # list of painted house indices
+available = []  # heap of available unpainted houses sorted by end day
 
-for house in houses:
-    start, end, index = house
-    
-    if start > currentDay:
-        currentDay = start
-        
-    if currentDay <= end and currentDay >= start:
-        heapq.heappush(pq, (end-start, index))
-        
-    if pq:
-        duration, house_index = heapq.heappop(pq)
-        painted.append(house_index)
-        currentDay += 1
+for day in range(1, n+1):
+    while houses and houses[0][0] == day:
+        _, end, index = houses.pop(0)
+        heapq.heappush(available, (end, index))
 
-print(len(painted))
-for index in painted:
-    print(index, end=' ')
+    if available:
+        end, index = heapq.heappop(available)
+        painted.append(index)
+
+print('\n'.join(map(str, painted)))
+
