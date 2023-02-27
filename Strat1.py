@@ -26,5 +26,5 @@ for house in houses:
 
 # Output the indices of painted houses
 for i in painted:
-    print(i + ' ')
+    print(i, end=' ')
 print()
