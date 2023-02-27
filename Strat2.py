@@ -1,5 +1,7 @@
 from queue import PriorityQueue
+import sys
 
+sys.stdin = open('input.txt', 'r')
 n, m = map(int, input().split())
 
 houses = []
@@ -26,5 +28,3 @@ for house in houses:
         painted += 1
         currentDay += 1
         print(index)
-
-print(painted)
