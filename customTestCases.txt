@@ -16,3 +16,19 @@
 1 1
 1 1
 1 5
+
+# strat 2 example, given, should be 
+10 5
+1 2
+1 2
+1 5
+1 5
+3 3
+
+altered: 
+10 5
+1 5
+1 5
+1 2
+1 2
+3 3
