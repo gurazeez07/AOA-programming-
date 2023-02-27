@@ -1,5 +1,6 @@
 import heapq
 
+# Paint earliest ending house first
 def strat4(n, m, houses):
     pq = []  # priority queue to store unpainted houses available on a day
     painted = [0] * m  # array to store painted houses
@@ -10,13 +11,21 @@ def strat4(n, m, houses):
         while houses and houses[0][0] <= i:
             start, end, index = houses.pop(0)
             if not painted[index]:
-                heapq.heappush(pq, (end, index))  # push the unpainted house into the priority queue
+                # push end first so it sorts by end date    
+                heapq.heappush(pq, (end, start, index))  # push the unpainted house into the priority queue
         
         # Paint the house that will stop being available the earliest among the unpainted houses available on the current day.
-        if pq:
-            end, index = heapq.heappop(pq)
-            painted[index] = 1
-            output.append(index)
+        while not len(pq) == 0:
+            end, start, index = heapq.heappop(pq)
+            if end < i:
+                continue
+            print(index + 1)
+            break
+
+        # if pq:
+        #     end, index = heapq.heappop(pq)
+        #     painted[index] = 1
+        #     output.append(index)
     
     # Print the output list of house indices.
     for index in output:
