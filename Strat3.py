@@ -7,11 +7,13 @@ for i in range(m):
     start, end = map(int, input().split())
     houses.append((start, end, i+1))  # add index to tuple for later sorting
 
-houses.sort()  # sort by start day and then end day
+# O(m log m)
+houses.sort(key=lambda x: (x[0], -x[1])) # sort by start day and then reverse end day (so that the earliest end day is first in stack)
 
 painted = []  # list of painted house indices
 available = []  # heap of available unpainted houses sorted by end day
 
+# Iterate over days, O(n)
 for day in range(1, n+1):
     while houses and houses[0][0] == day:
         start, end, index = houses.pop(0)
