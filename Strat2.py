@@ -16,7 +16,7 @@ currentDay = 1
 index = 0
 addedOne = False
 
-while currentDay < n:
+while (currentDay < n) & (len(houses) > 0):
     if index >= len(houses):
         index = 0
     house = houses[index]
