@@ -18,9 +18,10 @@ for day in range(1, n+1):
         stack.append((-start, end, index))
 
     # Paint the house that became available the latest among the unpainted houses available on the current day.
-    if not len(stack) == 0:
+    while not len(stack) == 0:
         start, end, index = stack.pop()
         if end < day:
             continue
         print(index)
+        break
         # currentDay += 1
