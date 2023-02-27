@@ -1,6 +1,6 @@
 import heapq
 
-def strat(n, m, houses):
+def strat4(n, m, houses):
     pq = []  # priority queue to store unpainted houses available on a day
     painted = [0] * m  # array to store painted houses
     output = []  # list of house indices to paint
@@ -28,4 +28,4 @@ if __name__ == '__main__':
     for i in range(m):
         start, end = map(int, input().split())
         houses.append((start, end, i))
-    strat(n, m, houses)
+    strat4(n, m, houses)
