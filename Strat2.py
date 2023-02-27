@@ -25,6 +25,7 @@ for day in range(1, n+1):
         start, end, index = stack.pop()
         if end < day:
             continue
+        # house is still available
         print(index)
         break
         # currentDay += 1
