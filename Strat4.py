@@ -7,7 +7,7 @@ def strat4(n, m, houses):
     output = []  # list of house indices to paint
     
     houses.sort(key=lambda x: (x[0], -x[1]))  # sort by start day and then reverse end day (so that the earliest end day is first in stack)
-    
+
     for i in range(1, n+1):
         # Add all the unpainted houses that are available on the current day to the priority queue.
         while houses and houses[0][0] <= i:
@@ -21,7 +21,7 @@ def strat4(n, m, houses):
             end, start, index = heapq.heappop(pq)
             if end < i:
                 continue
-            print(index + 1)
+            print(index + 1, end='')
             break
     
     # Print the output list of house indices.
