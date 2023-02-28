@@ -1,25 +1,23 @@
 from queue import PriorityQueue
 
-n, m = 0, 0
-
-def schedule_houses(houses):
+def schedule_houses(houses, n):
     # sort the houses by earliest start time, breaking ties with earliest finish time
     sorted_houses = sorted(houses, key=lambda h: (h[0], h[1]))
-    # create a priority queue that prioritizes finish time if the day is 0
+    # create a priority queue that prioritizes finish time
     pq = PriorityQueue()
-    day = 1
-    for house in sorted_houses:
-        if house[0] >= day:
-            # if the house is available on or after the current day, add it to the priority queue
-            pq.put((house[1], house))
+    i = 0
+    for day in range(1, n+1):
+        # add unpainted houses available on or before the current day to the priority queue
+        while i < len(sorted_houses) and sorted_houses[i][0] <= day:
+            pq.put((sorted_houses[i][1], sorted_houses[i][2]))
+            i += 1
+        # select the earliest finishing house among the available unpainted houses for the current day
         if not pq.empty():
-            # if there are available houses, print the one with the earliest finish time
-            earliest_finish_time, earliest_finish_house = pq.get()
-            print(f"Schedule house {earliest_finish_house['id']} on day {day}")
-            day += 1
-            if earliest_finish_house[1] > earliest_finish_time:
-                # if the house is not available for the full duration, add it back to the priority queue
-                pq.put((earliest_finish_house[1], earliest_finish_house))
+            finish_time, house_id = pq.get()
+            print(f"Schedule house {house_id+1} on day {day}")
+        # remove painted houses from the priority queue
+        while not pq.empty() and pq.queue[0][0] <= day:
+            pq.get()
 
 
 if __name__ == '__main__':
@@ -28,4 +26,4 @@ if __name__ == '__main__':
     for i in range(m):
         start, end = map(int, input().split())
         houses.append((start, end, i))
-    schedule_houses(houses)
+    schedule_houses(houses, n)
