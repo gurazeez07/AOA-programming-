@@ -1,5 +1,6 @@
 n, m = map(int, input().split())
 
+numpainted = 0
 # paint houses that become available the latest first
 houses = []
 for i in range(m):
@@ -26,6 +27,7 @@ for day in range(1, n+1):
         if end < day:
             continue
         # house is still available
-        print(index)
+        print(index, end=' ')
+        numpainted += 1
         break
         # currentDay += 1

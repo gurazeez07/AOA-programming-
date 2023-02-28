@@ -1,4 +1,9 @@
 import sys
+# import time
+
+# start timer
+# start = time.time()
+paintedHouses = 0
 
 # Get input from file // command line??
 n, m = map(int, input().split())
@@ -21,10 +26,12 @@ for house in houses:
         currentDay = start
     # If can paint the house today
     if currentDay <= end:
-        painted.append(i)
+        print(i, end=' ')
         currentDay += 1
 
+# Print time taken
+
 # Output the indices of painted houses
-for i in painted:
-    print(i, end=' ')
-print()
+# for i in painted:
+#     print(i, end=' ')
+# print()

@@ -1,5 +1,7 @@
 import heapq
 
+numpainted = 0
+
 # Paint the shortest duration house first
 n, m = map(int, input().split())
 houses = []
@@ -20,11 +22,12 @@ for day in range(1, n+1):
         heapq.heappush(available, (end - start, end, index))
 
     while len(available) > 0:
+        numpainted += 1
         duration, end, index = heapq.heappop(available)
         if end < day:
             continue
         painted.append(index)
         break
 
-print('\n'.join(map(str, painted)))
+print(' '.join(map(str, painted)))
 
