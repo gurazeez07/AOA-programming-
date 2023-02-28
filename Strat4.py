@@ -21,7 +21,7 @@ def strat4(n, m, houses):
             end, start, index = heapq.heappop(pq)
             if end < i:
                 continue
-            print(index + 1, end='')
+            print(index + 1, end=' ')
             break
     
     # Print the output list of house indices.
